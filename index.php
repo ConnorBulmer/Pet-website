@@ -63,7 +63,7 @@ require 'database.php' ;
 
 
 
-    echo "<table >
+    echo "<table class=\"table table-bordered\">
     <tr>
     <th>Pet ID</th>
     <th>Name</th>
