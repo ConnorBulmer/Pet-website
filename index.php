@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Petopedia</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<link href="grayscale.css" rel="stylesheet">
+    <title>Petopedia</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link href="grayscale.css" rel="stylesheet">
 
-	    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -24,21 +24,21 @@
                         <h1 class="brand-heading">Petopedia</h1>
                         <p class="intro-text">Pet adoption Catalogue<p>
                         <form method="post" action="index.php#pets">
-						  <input type="text" name="fname" style="color: black; height: 30px; width:300px;"><br>
+                          <input type="text" name="fname" style="color: black; height: 30px; width:300px;"><br>
 
-						<select name="formGender" style="color: black; height: 30px; width:150px;">
-						  <option value="Animal_ID">ID</option>
-						  <option value="Animal_Name">Name</option>
-						  <option value="animal_type">Type</option>
-						  <option value="Animal_Gender">Gender</option>
-						  <option value="Animal_Breed">Breed</option>
-						  <option value="Animal_Color">Color</option>
-						  <option value="Address">Address</option>
-						</select>
+                        <select name="formGender" style="color: black; height: 30px; width:150px;">
+                          <option value="Animal_ID">ID</option>
+                          <option value="Animal_Name">Name</option>
+                          <option value="animal_type">Type</option>
+                          <option value="Animal_Gender">Gender</option>
+                          <option value="Animal_Breed">Breed</option>
+                          <option value="Animal_Color">Color</option>
+                          <option value="Address">Address</option>
+                        </select>
 
-						  <input type="submit" value="Submit" style="color: black; height: 30px; width:150px;">
-						</form>
-                        <a href="#pets">
+                          <input type="submit" value="Submit" style="color: black; height: 30px; width:150px;">
+                        </form>
+                        <a href="/index.php#pets">
                         View All
                         </a>
                     </div>
@@ -55,11 +55,17 @@ require 'database.php' ;
 <div class="col-md-8 col-md-offset-2">
 <?php
 
-	if ($_POST) {
-		$result = mysqli_query($conn,"SELECT * FROM pets WHERE ". $_POST['formGender'] . " LIKE '%" .$_POST['fname']."%'" );
-	}else {
-		$result = mysqli_query($conn,"SELECT * FROM pets");
-	}
+    if ($_POST) {
+        if ($_POST['formGender'] == "Animal_Gender"){
+            $result = mysqli_query($conn,"SELECT * FROM pets WHERE ". $_POST['formGender'] . "='" .$_POST['fname']."'" );
+        }else{
+            $result = mysqli_query($conn,"SELECT * FROM pets WHERE ". $_POST['formGender'] . " LIKE '%" .$_POST['fname']."%'" );
+        }
+
+
+    }else {
+        $result = mysqli_query($conn,"SELECT * FROM pets");
+    }
 
 
 
