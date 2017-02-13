@@ -38,7 +38,7 @@
 
                           <input type="submit" value="Submit" style="color: black; height: 30px; width:150px;">
                         </form>
-                        <a href="/index.php#pets">
+                        <a href="/">
                         View All
                         </a>
                     </div>
